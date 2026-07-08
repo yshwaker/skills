@@ -11,7 +11,7 @@ Use it when you need an agent to:
 - Expand referenced Apifox schemas used by request and response bodies.
 - Implement frontend or client code against the documented backend contract.
 
-The Apifox project ID can be provided directly in the prompt, through `APIFOX_PROJECT_ID`, or recorded in the consuming project's `AGENTS.md`:
+The Apifox project ID can be provided directly in the prompt or recorded in the consuming project's `AGENTS.md`:
 
 ```markdown
 Apifox projectId: <project_id>
@@ -53,11 +53,10 @@ Authenticate with Apifox:
 apifox login --access-token <access_token>
 ```
 
-Or use environment variables:
+Or set the token through an environment variable:
 
 ```bash
 export APIFOX_ACCESS_TOKEN=<access_token>
-export APIFOX_PROJECT_ID=<project_id>
 ```
 
 ## 技能
@@ -73,7 +72,7 @@ export APIFOX_PROJECT_ID=<project_id>
 - 展开请求体和响应体中引用的 Apifox schema。
 - 基于后端接口契约实现前端或客户端代码。
 
-Apifox projectId 可以直接在 prompt 中提供，也可以通过 `APIFOX_PROJECT_ID` 设置，或记录在使用该技能的项目 `AGENTS.md` 中：
+Apifox projectId 可以直接在 prompt 中提供，或记录在使用该技能的项目 `AGENTS.md` 中：
 
 ```markdown
 Apifox projectId: <project_id>
@@ -115,9 +114,8 @@ npm install -g apifox-cli
 apifox login --access-token <access_token>
 ```
 
-或使用环境变量：
+或通过环境变量设置 token：
 
 ```bash
 export APIFOX_ACCESS_TOKEN=<access_token>
-export APIFOX_PROJECT_ID=<project_id>
 ```

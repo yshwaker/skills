@@ -32,12 +32,6 @@ apifox login --access-token <access_token>
 export APIFOX_ACCESS_TOKEN=<access_token>
 ```
 
-可选地设置默认项目 ID：
-
-```bash
-export APIFOX_PROJECT_ID=<project_id>
-```
-
 不要编造 token。如果脚本提示未登录或没有权限，要求用户补充 `APIFOX_ACCESS_TOKEN` 或先执行 `apifox login`。
 
 ## 解析项目 ID
@@ -46,8 +40,7 @@ export APIFOX_PROJECT_ID=<project_id>
 
 1. 如果用户直接说明 projectId 或 project ID，使用用户给出的值。
 2. 如果当前仓库的 `AGENTS.md`、上级目录 `AGENTS.md` 或同类项目说明中记录了 Apifox projectId，读取后使用该值。
-3. 如果环境变量 `APIFOX_PROJECT_ID` 已设置，可以省略 `--project`。
-4. 如果仍无法确定，先询问用户要查询哪个 Apifox projectId；不要使用猜测值。
+3. 如果仍无法确定，先询问用户要查询哪个 Apifox projectId；不要使用猜测值。
 
 推荐在使用该 skill 的项目 `AGENTS.md` 中记录：
 

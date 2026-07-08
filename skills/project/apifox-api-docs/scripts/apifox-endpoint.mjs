@@ -7,9 +7,6 @@ function printUsage() {
   node ~/.agents/skills/apifox-api-docs/scripts/apifox-endpoint.mjs find --path <接口路径> [--method GET] --project <project_id> [--branch main]
   node ~/.agents/skills/apifox-api-docs/scripts/apifox-endpoint.mjs get --path <接口路径> [--method GET] --project <project_id> [--branch main]
 
-环境变量:
-  APIFOX_PROJECT_ID=<project_id> 可代替 --project
-
 说明:
   - 依赖本机已全局安装 apifox-cli，并能通过 apifox 命令访问。
   - 鉴权优先使用 APIFOX_ACCESS_TOKEN；如果未设置，则使用 apifox login 保存的本机登录态。
@@ -145,13 +142,13 @@ function simplifyEndpoint(endpoint) {
 }
 
 function resolveProjectId(args) {
-  const project = args.project ?? process.env.APIFOX_PROJECT_ID;
+  const project = args.project;
 
   if (typeof project !== 'string' || !project.trim()) {
     throw new Error(
       [
         '缺少 Apifox 项目 ID。',
-        '请传入 --project <project_id>，或设置环境变量 APIFOX_PROJECT_ID。',
+        '请传入 --project <project_id>。',
         '如果项目 ID 写在当前仓库的 AGENTS.md 中，请先读取它，再作为 --project 传给脚本。',
       ].join('\n'),
     );
