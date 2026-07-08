@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Apifox API Docs'
+  short_description: '按 projectId 和接口路径读取 Apifox 文档与响应 schema'
+  default_prompt: '使用 $apifox-api-docs 按 Apifox projectId 和接口路径读取接口文档。'

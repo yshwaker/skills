@@ -1,0 +1,6 @@
+{
+  "name": "shihaoy-skills",
+  "skills": [
+    "./skills/project/apifox-api-docs"
+  ]
+}
