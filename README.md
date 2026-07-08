@@ -1,67 +1,65 @@
 # Shihaoy Skills
 
-Personal agent skills packaged as a GitHub repo.
-
-This repo follows the layout used by `mattpocock/skills`: skills live under `skills/<category>/<skill-name>`, and install metadata is declared in `.claude-plugin/plugin.json`.
+Personal agent skills for reusable project workflows.
 
 ## Skills
 
-- `apifox-api-docs` - Read and summarize Apifox API docs by project ID and endpoint path through the bundled Apifox CLI helper.
+### `apifox-api-docs`
 
-For repeat use in a project, record the project ID in that project's `AGENTS.md`:
+Reads Apifox API documentation by project ID and endpoint path through the bundled Apifox CLI helper.
+
+Use it when you need an agent to:
+
+- Find an endpoint by path and optional method.
+- Summarize request parameters, response schema, tags, status, and update time.
+- Expand referenced Apifox schemas used by request and response bodies.
+- Implement frontend or client code against the documented backend contract.
+
+The Apifox project ID can be provided directly in the prompt, through `APIFOX_PROJECT_ID`, or recorded in the consuming project's `AGENTS.md`:
 
 ```markdown
 Apifox projectId: <project_id>
 ```
 
-The skill also accepts project IDs directly from the user or through `APIFOX_PROJECT_ID`.
+## Install
 
-## Install From GitHub
-
-After pushing this directory to GitHub, install it with the skills installer:
+Install all skills from this repo:
 
 ```bash
-npx skills@latest add <github-owner>/<repo-name>
+npx skills@latest add yshwaker/skills
 ```
 
-For a direct install into Agent Skills compatible locations:
+Or install only `apifox-api-docs` directly into `~/.agents/skills`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<github-owner>/<repo-name>/main/scripts/install-skill.sh \
-  | bash -s -- <github-owner>/<repo-name> apifox-api-docs
+curl -fsSL https://raw.githubusercontent.com/yshwaker/skills/main/scripts/install-skill.sh \
+  | bash -s -- yshwaker/skills apifox-api-docs
 ```
 
-By default the direct installer writes to `~/.agents/skills`. Override with `--dest`:
+To install into another skills directory:
 
 ```bash
-./scripts/install-skill.sh apifox-api-docs --dest "$HOME/.claude/skills"
+curl -fsSL https://raw.githubusercontent.com/yshwaker/skills/main/scripts/install-skill.sh \
+  | bash -s -- yshwaker/skills apifox-api-docs --dest "$HOME/.claude/skills"
 ```
 
-## Local Development
+## Setup
 
-List all skills:
+Install the Apifox CLI:
 
 ```bash
-./scripts/list-skills.sh
+npm install -g apifox-cli
 ```
 
-Symlink skills into local agent directories while developing:
+Authenticate with Apifox:
 
 ```bash
-./scripts/link-skills.sh
+apifox login --access-token <access_token>
 ```
 
-Validate repo metadata before committing:
+Or use environment variables:
 
 ```bash
-./scripts/validate-skills.sh
+export APIFOX_ACCESS_TOKEN=<access_token>
+export APIFOX_PROJECT_ID=<project_id>
 ```
-
-## Add A Skill
-
-1. Create `skills/<category>/<skill-name>/SKILL.md`.
-2. Add optional `agents/openai.yaml`, `scripts/`, `references/`, or `assets/`.
-3. Add the skill path to `.claude-plugin/plugin.json`.
-4. Run `./scripts/validate-skills.sh`.
-
-Keep each skill self-contained. Do not depend on the original project path after copying a skill into this repository.
