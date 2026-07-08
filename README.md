@@ -1,7 +1,3 @@
-# Shihaoy Skills
-
-Personal agent skills for reusable project workflows.
-
 ## Skills
 
 ### `apifox-api-docs`
